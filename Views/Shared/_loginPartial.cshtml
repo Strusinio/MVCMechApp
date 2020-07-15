@@ -21,12 +21,25 @@ else
     </ul>
 }
 
+@if (Session["LoginWorkshop"] == null)
+{ 
 <ul class="nav navbar-nav navbar-right">
     <li>
         @Html.ActionLink("RegisterWorkshop", "RegisterWorkshop", "Account", null, null)
     </li>
     <li>
         @Html.ActionLink("LoginWorkshop", "LoginWorkshop", "Account", null, null)
+    </li>
+</ul>
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @Html.ActionLink("Witaj " + Session["LoginWorkshop"], "IndexWorkshop", "Home", null, null)
+    </li>
+    <li>
+        @Html.ActionLink("LogoutWorkshop", "LogoutWorkshop", "Account", null, null)
     </li>
 </ul>
 }

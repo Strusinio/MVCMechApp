@@ -19,7 +19,7 @@ namespace MechAppProject.Models
         public string WorkshopName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Właściciel jest wymagany")]
         [Display(Name = "Właściciel: ")]
-        public string WorkshopOwner { get; set; }
+        public string OwnerName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Adres jest wymagany")]
         [Display(Name = "Adres Email: ")]
         public string Email { get; set; }

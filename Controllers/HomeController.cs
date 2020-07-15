@@ -13,6 +13,11 @@ namespace MechAppProject.Controllers
             return View();
         }
 
+        public ActionResult IndexWorkshop()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

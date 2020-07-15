@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MechAppProject.Models
 {
-    public class CustmerLoginModel
+    public class WorkshopLoginModel
     {
        [Required(ErrorMessage = "Poprawny login jest wymagany")]
         public string Login { get; set; }

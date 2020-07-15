@@ -94,17 +94,17 @@
 
             <tr>
                 <td>
-                    @Html.LabelFor(model => model.WorkshopOwner)
+                    @Html.LabelFor(model => model.OwnerName)
                 </td>
                 <td>
-                    @Html.TextBoxFor(model => model.WorkshopOwner)
+                    @Html.TextBoxFor(model => model.OwnerName)
                 </td>
             </tr>
 
             <tr>
                 <td></td>
                 <td colspan="2">
-                    @Html.ValidationMessageFor(model => model.WorkshopOwner, null, new { @class = "text text-danger" })
+                    @Html.ValidationMessageFor(model => model.OwnerName, null, new { @class = "text text-danger" })
                 </td>
             </tr>
 

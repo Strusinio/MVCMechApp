@@ -12,6 +12,7 @@ namespace MechAppProject.Controllers
     {
         //////////////////////////////Customer Part/////////////////////////////////////////////
         MechAppProjectEntities objMechAppProjectEntities = new MechAppProjectEntities();
+
         // GET: Account
         public ActionResult Index()
         {
@@ -63,12 +64,12 @@ namespace MechAppProject.Controllers
         }
         public ActionResult Login()
         {
-            CustmerLoginModel objCustmerLoginModel = new CustmerLoginModel();
+            WorkshopLoginModel objCustmerLoginModel = new WorkshopLoginModel();
             return View(objCustmerLoginModel);
         }
 
         [HttpPost]
-        public ActionResult Login(CustmerLoginModel objCustmerLoginModel)
+        public ActionResult Login(WorkshopLoginModel objCustmerLoginModel)
         {
             if (ModelState.IsValid)
             {
@@ -97,9 +98,72 @@ namespace MechAppProject.Controllers
             WorkshopModel objWorkshopModel = new WorkshopModel();
             return View(objWorkshopModel);
         }
+
+        [HttpPost]
+        public ActionResult RegisterWorkshop(WorkshopModel objWorkshopModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Workshop objWorkshop = new Workshop();
+                objWorkshop.Login = objWorkshopModel.Login;
+                if (objMechAppProjectEntities.Customers.Any(x => x.Login == objWorkshopModel.Login))
+                {
+                    ViewBag.DuplicateMessageLogin = "Ten Login jest już zajęty!!";
+                    return View("Register", objWorkshopModel);
+                }
+                objWorkshop.Password = objWorkshopModel.Password;
+                objWorkshop.Email = objWorkshopModel.Email;
+                if (objMechAppProjectEntities.Customers.Any(x => x.Email == objWorkshop.Email))
+                {
+                    ViewBag.DuplicateMessageEmail = "Ten Email jest już zajęty!!";
+                    return View("Register", objWorkshopModel);
+                }
+
+                objWorkshop.WorkshopName = objWorkshopModel.WorkshopName;
+                objWorkshop.OwerName = objWorkshopModel.OwnerName;
+                objWorkshop.City = objWorkshopModel.City;
+                objWorkshop.Street = objWorkshopModel.Street;
+                objWorkshop.StreetNbr = objWorkshopModel.StreetNbr;
+                objWorkshop.ZipCode = objWorkshopModel.ZipCode;
+                objWorkshop.PhoneNbr = objWorkshopModel.PhoneNbr;
+                objMechAppProjectEntities.Workshops.Add(objWorkshop);
+                objMechAppProjectEntities.SaveChanges();
+                ModelState.Clear();
+                ViewBag.SuccessMessage = "Warsztat dodany poprawnie";
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+
+        }
         public ActionResult LoginWorkshop()
         {
+            WorkshopLoginModel objWorkshopLoginModel = new WorkshopLoginModel();
+            return View(objWorkshopLoginModel);
+        }
+        [HttpPost]
+        public ActionResult LoginWorkshop(WorkshopLoginModel objWorkshopLoginModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (objMechAppProjectEntities.Workshops.Where(m => m.Login == objWorkshopLoginModel.Login && m.Password == objWorkshopLoginModel.Password).FirstOrDefault() == null)
+                {
+                    ModelState.AddModelError("Error", "Login i haslo nie są poprawne");
+                    return View("LoginWorkshop");
+                }
+                else
+                {
+                    Session["LoginWorkshop"] = objWorkshopLoginModel.Login;
+                    return RedirectToAction("IndexWorkshop", "Home");
+                }
+            }
             return View();
+        }
+        public ActionResult LogoutWorkshop()
+        {
+            Session.Abandon();
+            return View("Login");
         }
     }
 }
