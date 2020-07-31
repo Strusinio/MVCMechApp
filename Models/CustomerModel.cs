@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MechAppProject.Models
 {
-    public class CustomerModel : DbContext
+    public class CustomerModel
     {
         public int CustomerId { get; set; }
 

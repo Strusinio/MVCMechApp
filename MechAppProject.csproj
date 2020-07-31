@@ -130,6 +130,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WorkshopController.cs" />
+    <Compile Include="DBModule\Car.cs">
+      <DependentUpon>CustomerDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBModule\Customer.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>
     </Compile>
@@ -154,8 +158,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CustmerLoginModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Models\WorkshopModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,9 +224,16 @@
     <Content Include="Views\Account\RegisterWorkshop.cshtml" />
     <Content Include="Views\Account\LoginWorkshop.cshtml" />
     <Content Include="Views\Home\IndexWorkshop.cshtml" />
+    <Content Include="Views\Workshop\Index.cshtml" />
+    <Content Include="Views\Home\IndexCustomer.cshtml" />
+    <Content Include="Views\Account\CustomerProfile.cshtml" />
+    <Content Include="Views\Account\CustomerProfileEdit.cshtml" />
+    <Content Include="Views\Account\WorkshopProfile.cshtml" />
+    <Content Include="Views\Account\WorkshopProfileEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Car\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

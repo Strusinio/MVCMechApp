@@ -1,4 +1,6 @@
-﻿@if (Session["Login"] == null)
+﻿@using MechAppProject.Models;
+
+@if (Session["Login"] == null)
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
@@ -13,12 +15,16 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Witaj " + Session["Login"], "Index", "Home", null, null)
+            @Html.ActionLink("Witaj " + (Session["Login"] as SessionModel).UserLogin, "IndexCustomer", "Home", null, null)
         </li>
-        <li>
+         <li>
             @Html.ActionLink("Logout", "Logout", "Account", null, null)
         </li>
+         <content>
+             <button type="button" onclick="location.href='@Url.Action("Account","WorkshopProfile")'">Dane Customer</button>
+         </content>
     </ul>
+
 }
 
 @if (Session["LoginWorkshop"] == null)
@@ -30,13 +36,14 @@ else
     <li>
         @Html.ActionLink("LoginWorkshop", "LoginWorkshop", "Account", null, null)
     </li>
+
 </ul>
 }
 else
 {
 <ul class="nav navbar-nav navbar-right">
     <li>
-        @Html.ActionLink("Witaj " + Session["LoginWorkshop"], "IndexWorkshop", "Home", null, null)
+        @Html.ActionLink("Witaj " + (Session["LoginWorkshop"] as SessionModel).WorkshopLogin, "IndexWorkshop", "Home", null, null)
     </li>
     <li>
         @Html.ActionLink("LogoutWorkshop", "LogoutWorkshop", "Account", null, null)

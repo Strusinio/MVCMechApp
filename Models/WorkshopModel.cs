@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MechAppProject.Models
 {
-    public class WorkshopModel : DbContext
+    public class WorkshopModel
     {
         public int WorkshopId { get; set; }
 
@@ -46,5 +46,7 @@ namespace MechAppProject.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Numer telefonu jest wymagany")]
         [Display(Name = "Numer Telefonu: ")]
         public string PhoneNbr { get; set; }
+
+        public List<CarModel> Cars{ get; set; }
     }
 }

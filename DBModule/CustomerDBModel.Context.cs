@@ -27,5 +27,6 @@ namespace MechAppProject.DBModule
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Workshop> Workshops { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
     }
 }

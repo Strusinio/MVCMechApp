@@ -1,0 +1,22 @@
+﻿@using MechAppProject.Models
+
+@model List<WorkshopModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista warsztatów</h2>
+
+@foreach (var workshop in Model)
+{
+    <div>@workshop.WorkshopName</div>
+    <div>@workshop.Email</div>
+    <div>@workshop.PhoneNbr</div>
+    <div>@workshop.City</div>
+    <div>@workshop.ZipCode</div>
+    <div>@string.Format("{0} {1}", workshop.Street, workshop.StreetNbr)</div>
+
+    <div style="margin-top: 50px;"></div>
+}
+

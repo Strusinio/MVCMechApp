@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MechAppProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductionYear" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EngineType" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Customers">
     <Key>
       <PropertyRef Name="CustomerId" />
@@ -33,6 +43,7 @@
     <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityContainer Name="MechAppProjectModelStoreContainer">
+    <EntitySet Name="Cars" EntityType="Self.Cars" Schema="Car" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="Customer" store:Type="Tables" />
     <EntitySet Name="Workshops" EntityType="Self.Workshops" Schema="Workshop" store:Type="Tables" />
   </EntityContainer>
