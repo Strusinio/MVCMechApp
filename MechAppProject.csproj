@@ -129,9 +129,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddCarController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorkshopController.cs" />
     <Compile Include="DBModule\Car.cs">
+      <DependentUpon>CustomerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModule\Chat.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModule\Customer.cs">
@@ -159,6 +164,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\ChatModel.cs" />
     <Compile Include="Models\CustmerLoginModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\SessionModel.cs" />
@@ -230,6 +236,10 @@
     <Content Include="Views\Account\CustomerProfileEdit.cshtml" />
     <Content Include="Views\Account\WorkshopProfile.cshtml" />
     <Content Include="Views\Account\WorkshopProfileEdit.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\AddCar\AddNewCar.cshtml" />
+    <Content Include="Views\AddCar\Index.cshtml" />
+    <Content Include="Views\AddCar\YourCarDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

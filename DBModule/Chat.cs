@@ -12,14 +12,14 @@ namespace MechAppProject.DBModule
     using System;
     using System.Collections.Generic;
     
-    public partial class Car
+    public partial class Chat
     {
-        public int CarId { get; set; }
+        public int ChatId { get; set; }
         public int CustomerId { get; set; }
-        public string Brand { get; set; }
-        public string Model { get; set; }
-        public string EngineType { get; set; }
+        public int WorkshopId { get; set; }
+        public string Message { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual Workshop Workshop { get; set; }
     }
 }

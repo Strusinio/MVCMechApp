@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MechAppProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Cars">
-    <Key>
-      <PropertyRef Name="CarId" />
-    </Key>
-    <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Brand" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="ProductionYear" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="EngineType" Type="varchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <EntityType Name="Customers">
     <Key>
       <PropertyRef Name="CustomerId" />
@@ -25,6 +15,25 @@
     <Property Name="StreetNbr" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="PhoneNbr" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Brand" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EngineType" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chat">
+    <Key>
+      <PropertyRef Name="ChatId" />
+    </Key>
+    <Property Name="ChatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="WorkshopId" Type="int" Nullable="false" />
+    <Property Name="Message" Type="text" Nullable="false" />
   </EntityType>
   <EntityType Name="Workshops">
     <Key>
@@ -42,9 +51,58 @@
     <Property Name="StreetNbr" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK__Car__CustomerId__108B795B">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Chat__CustomerId__09DE7BCC">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Chat">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Chat__WorkshopId__0AD2A005">
+    <End Role="Workshops" Type="Self.Workshops" Multiplicity="1" />
+    <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workshops">
+        <PropertyRef Name="WorkshopId" />
+      </Principal>
+      <Dependent Role="Chat">
+        <PropertyRef Name="WorkshopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="MechAppProjectModelStoreContainer">
-    <EntitySet Name="Cars" EntityType="Self.Cars" Schema="Car" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="Customer" store:Type="Tables" />
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Workshops" EntityType="Self.Workshops" Schema="Workshop" store:Type="Tables" />
+    <AssociationSet Name="FK__Car__CustomerId__108B795B" Association="Self.FK__Car__CustomerId__108B795B">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Chat__CustomerId__09DE7BCC" Association="Self.FK__Chat__CustomerId__09DE7BCC">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Chat" EntitySet="Chat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Chat__WorkshopId__0AD2A005" Association="Self.FK__Chat__WorkshopId__0AD2A005">
+      <End Role="Workshops" EntitySet="Workshops" />
+      <End Role="Chat" EntitySet="Chat" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

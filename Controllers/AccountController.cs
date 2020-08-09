@@ -125,7 +125,29 @@ namespace MechAppProject.Controllers
         }
 
         public ActionResult CustomerProfileEdit()
+
         {
+            var model = new CustomerModel();
+            var userSession = Session["Login"] as SessionModel;
+            if (userSession != null)
+            {
+                using (var db = new MechAppProjectEntities())
+                {
+                    var customer = db.Customers.FirstOrDefault(x => x.CustomerId == userSession.UserId);
+
+                    model.Login = customer.Login;
+                    model.Password = customer.Password;
+                    model.Email = customer.Email;
+                    model.Name = customer.Name;
+                    model.Surname = customer.Surname;
+                    model.City = customer.City;
+                    model.Street = customer.Street;
+                    model.StreetNbr = customer.StreetNbr;
+                    model.ZipCode = customer.ZipCode;
+                    model.PhoneNbr = customer.PhoneNbr;
+                }
+                return View(model);
+            }
             return View();
         }
 
@@ -180,7 +202,7 @@ namespace MechAppProject.Controllers
                 }
                 objWorkshop.Password = objWorkshopModel.Password;
                 objWorkshop.Email = objWorkshopModel.Email;
-                if (objMechAppProjectEntities.Customers.Any(x => x.Email == objWorkshop.Email))
+                if (objMechAppProjectEntities.Workshops.Any(x => x.Email == objWorkshop.Email))
                 {
                     ViewBag.DuplicateMessageEmail = "Ten Email jest już zajęty!!";
                     return View("RegisterWorkshop", objWorkshopModel);
@@ -237,7 +259,6 @@ namespace MechAppProject.Controllers
             Session.Abandon();
             return View("LoginWorkshop");
         }
-/////////////////////////////////////////////////////
         public ActionResult WorkshopProfile()
         {
             var model = new WorkshopModel();
@@ -267,7 +288,31 @@ namespace MechAppProject.Controllers
 
         public ActionResult WorkshopProfileEdit()
         {
-            return View();
+
+            {
+                var model = new WorkshopModel();
+                var workshopSession = Session["LoginWorkshop"] as SessionModel;
+                if (workshopSession != null)
+                {
+                    using (var db = new MechAppProjectEntities())
+                    {
+                        var workshop = db.Workshops.FirstOrDefault(x => x.WorkshopId == workshopSession.WorkshopId);
+
+                        model.Login = workshop.Login;
+                        model.Password = workshop.Password;
+                        model.Email = workshop.Email;
+                        model.WorkshopName = workshop.WorkshopName;
+                        model.OwnerName = workshop.OwerName;
+                        model.City = workshop.City;
+                        model.Street = workshop.Street;
+                        model.StreetNbr = workshop.StreetNbr;
+                        model.ZipCode = workshop.ZipCode;
+                        model.PhoneNbr = workshop.PhoneNbr;
+                    }
+                    return View(model);
+                }
+                return View();
+            }
         }
 
         [HttpPost]

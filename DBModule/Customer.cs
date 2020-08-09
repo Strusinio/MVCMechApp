@@ -14,6 +14,13 @@ namespace MechAppProject.DBModule
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Chats = new HashSet<Chat>();
+            this.Cars = new HashSet<Car>();
+        }
+    
         public int CustomerId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
@@ -25,5 +32,10 @@ namespace MechAppProject.DBModule
         public string StreetNbr { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNbr { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chat> Chats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

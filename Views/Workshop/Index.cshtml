@@ -17,6 +17,8 @@
     <div>@workshop.ZipCode</div>
     <div>@string.Format("{0} {1}", workshop.Street, workshop.StreetNbr)</div>
 
+    @Html.ActionLink("Kontakt", "Index", "Chat", new { workshopId = workshop.WorkshopId }, null)
+
     <div style="margin-top: 50px;"></div>
 }
 

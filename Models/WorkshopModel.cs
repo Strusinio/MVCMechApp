@@ -47,6 +47,6 @@ namespace MechAppProject.Models
         [Display(Name = "Numer Telefonu: ")]
         public string PhoneNbr { get; set; }
 
-        public List<CarModel> Cars{ get; set; }
+       
     }
 }

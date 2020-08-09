@@ -23,6 +23,7 @@ namespace MechAppProject.Controllers
                 {
                     var workshopModel = new WorkshopModel()
                     {
+                        WorkshopId = workshop.WorkshopId,
                         City = workshop.City,
                         Email = workshop.Email,
                         PhoneNbr = workshop.PhoneNbr,

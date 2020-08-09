@@ -21,12 +21,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   
-                    <li>@Html.ActionLink("Warsz Lista", "Index", "Workshop")</li>
-                    <li>@Html.ActionLink("P User", "CustomerProfile", "Account")</li>
-                    <li>@Html.ActionLink("E User", "CustomerProfileEdit", "Account")</li>
-                    <li>@Html.ActionLink("P Workshop", "WorkshopProfile", "Account")</li>
-                    <li>@Html.ActionLink("E Workshop", "WorkshopProfileEdit", "Account")</li>
+
+                    <li>@Html.ActionLink("Lista warsztatów", "Index", "Workshop")</li>
+                    @if (Session["Login"] == null && Session["LoginWorkshop"] == null)
+                    {
+                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("O aplikacji", "About", "Home")</li>
+                    }
+                    @if (Session["Login"] != null)
+                    {
+                        <li>@Html.ActionLink("Twoje Dane", "CustomerProfile", "Account")</li>
+                        <li>@Html.ActionLink("Edytuj Dane", "CustomerProfileEdit", "Account")</li>
+                        <li>@Html.ActionLink("Czat", "Index", "Chat")</li>
+                    }
+                    @if (Session["LoginWorkshop"] != null)
+                    {
+                        <li>@Html.ActionLink("Czat", "Index", "Chat")</li>
+                        <li>@Html.ActionLink("Twoje Dane", "WorkshopProfile", "Account")</li>
+                        <li>@Html.ActionLink("Edytuj Dane", "WorkshopProfileEdit", "Account")</li>
+                    }
 
                 </ul>
                 @Html.Partial("_loginPartial")

@@ -35,13 +35,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Chats">
+      <EntityTypeMapping TypeName="MechAppProjectModel.Chat">
+        <MappingFragment StoreEntitySet="Chat">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Cars">
       <EntityTypeMapping TypeName="MechAppProjectModel.Car">
-        <MappingFragment StoreEntitySet="Cars">
+        <MappingFragment StoreEntitySet="Car">
           <ScalarProperty Name="EngineType" ColumnName="EngineType" />
-          <ScalarProperty Name="ProductionYear" ColumnName="ProductionYear" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="CarId" ColumnName="CarId" />
         </MappingFragment>
       </EntityTypeMapping>
