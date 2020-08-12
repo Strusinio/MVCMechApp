@@ -39,5 +39,70 @@ namespace MechAppProject.Controllers
 
             return View(model);
         }
+
+        public ActionResult AddService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddService(WorkshopServiceModel viewModel)
+        {
+            var session = Session["LoginWorkshop"] as SessionModel;
+
+            if (session != null)
+            {
+                using (var db = new MechAppProjectEntities())
+                {
+                    var workshopService = new WorkshopService()
+                    {
+                        WorkshopId = session.WorkshopId,
+                        Title = viewModel.Title,
+                        Description = viewModel.Description,
+                        Price = viewModel.Price.HasValue ? viewModel.Price.Value : 0,
+                        PriceDecimal = viewModel.PriceDecimal.HasValue ? viewModel.PriceDecimal.Value : 0,
+                        DurationInHrs = viewModel.DurationInHours.HasValue ? viewModel.DurationInHours.Value : 0,
+                        DurationInMinutes = viewModel.DurationInMinutes.HasValue ? viewModel.DurationInMinutes.Value : 0
+                    };
+
+                    db.WorkshopServices.Add(workshopService);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult YourServices()
+        {
+            var model = new List<WorkshopServiceModel>();
+            var session = Session["LoginWorkshop"] as SessionModel;
+
+            if (session != null)
+            {
+                using (var db = new MechAppProjectEntities())
+                {
+                    var services = db.WorkshopServices.Where(x => x.WorkshopId == session.WorkshopId).ToList();
+
+                    foreach (var workshopService in services)
+                    {
+                        var workshopServiceModel = new WorkshopServiceModel()
+                        {
+                            WorkshopId = session.WorkshopId,
+                            Title = workshopService.Title,
+                            Description = workshopService.Description,
+                            Price = workshopService.Price,
+                            PriceDecimal = workshopService.PriceDecimal,
+                            DurationInHours = workshopService.DurationInHrs,
+                            DurationInMinutes = workshopService.DurationInMinutes,
+                        };
+
+                        model.Add(workshopServiceModel);
+                    }
+
+                }
+            }
+
+            return View(model);
+        }
     }
 }

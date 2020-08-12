@@ -56,5 +56,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="WorkshopServices">
+      <EntityTypeMapping TypeName="MechAppProjectModel.WorkshopService">
+        <MappingFragment StoreEntitySet="WorkshopServices">
+          <ScalarProperty Name="PriceDecimal" ColumnName="PriceDecimal" />
+          <ScalarProperty Name="DurationInMinutes" ColumnName="DurationInMinutes" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DurationInHrs" ColumnName="DurationInHrs" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -22,23 +22,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink("Lista warsztatów", "Index", "Workshop")</li>
                     @if (Session["Login"] == null && Session["LoginWorkshop"] == null)
                     {
+                        <li>@Html.ActionLink("Lista warsztatów", "Index", "Workshop")</li>
                         <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                         <li>@Html.ActionLink("O aplikacji", "About", "Home")</li>
                     }
                     @if (Session["Login"] != null)
                     {
-                        <li>@Html.ActionLink("Twoje Dane", "CustomerProfile", "Account")</li>
-                        <li>@Html.ActionLink("Edytuj Dane", "CustomerProfileEdit", "Account")</li>
                         <li>@Html.ActionLink("Czat", "Index", "Chat")</li>
+                        
                     }
                     @if (Session["LoginWorkshop"] != null)
                     {
                         <li>@Html.ActionLink("Czat", "Index", "Chat")</li>
-                        <li>@Html.ActionLink("Twoje Dane", "WorkshopProfile", "Account")</li>
-                        <li>@Html.ActionLink("Edytuj Dane", "WorkshopProfileEdit", "Account")</li>
                     }
 
                 </ul>

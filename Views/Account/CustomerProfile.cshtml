@@ -5,16 +5,67 @@
 }
 
 <h2>Customer profile</h2>
-
-<div>@Model.Login</div>
-<div>@Model.Password</div>
-<div>@Model.Email</div>
-<div>@Model.Name</div>
-<div>@Model.Surname</div>
-<div>@Model.City</div>
-<div>@Model.Street</div>
-<div>@Model.StreetNbr</div>
-<div>@Model.ZipCode</div>
-<div>@Model.PhoneNbr</div>
+<table>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Login)
+            @Model.Login
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Password)
+            @Model.Password
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Email)
+            @Model.Email
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Name)
+            @Model.Name
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Surname)
+            @Model.Surname
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.City)
+            @Model.City
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Street)
+            @Model.Street
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.StreetNbr)
+            @Model.StreetNbr
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.ZipCode)
+            @Model.ZipCode
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.PhoneNbr)
+            @Model.PhoneNbr
+        </td>
+    </tr>
+</table>
 
 

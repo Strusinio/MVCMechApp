@@ -180,7 +180,9 @@ namespace MechAppProject.Controllers
             return RedirectToAction("CustomerProfile");
         }
 
+
         //////////////////////////////Workshop Part/////////////////////////////////////////////
+       [HttpGet]
         public ActionResult RegisterWorkshop()
         {
             WorkshopModel objWorkshopModel = new WorkshopModel();
@@ -219,7 +221,7 @@ namespace MechAppProject.Controllers
                 objMechAppProjectEntities.SaveChanges();
                 ModelState.Clear();
                 ViewBag.SuccessMessage = "Warsztat dodany poprawnie";
-                return RedirectToAction("IndexWorkshop", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();

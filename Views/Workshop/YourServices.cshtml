@@ -1,0 +1,25 @@
+﻿@using MechAppProject.Models
+
+@model List<WorkshopServiceModel>
+
+@{
+    ViewBag.Title = "WorkshopServiceModel";
+}
+
+<h2>Twoje usługi </h2>
+
+@foreach (var workshopService in Model)
+{
+
+    <div>@workshopService.Title.</div>
+    <div>@workshopService.Description</div>
+    <div>@workshopService.Price</div>
+    <div>@workshopService.PriceDecimal.</div>
+    <div>@workshopService.DurationInHours</div>
+    <div>@workshopService.DurationInMinutes</div>
+
+
+    <div style="margin-top: 50px;"></div>
+}
+
+

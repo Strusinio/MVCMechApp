@@ -10,11 +10,31 @@
 
 @foreach (var carYours in Model)
 {
-    
-    <div>@carYours.Brand.</div>
-    <div>@carYours.Model</div>
-    <div>@carYours.EngineType</div>
-
+    <tr>
+        <td>
+            <div>
+                @Html.LabelFor(model => carYours.Brand)
+                @carYours.Brand
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @Html.LabelFor(model => carYours.Model)
+                @carYours.Model
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @Html.LabelFor(model => carYours.EngineType)
+                @carYours.EngineType
+            </div>
+            
+        </td>
+    </tr>
     <div style="margin-top: 50px;"></div>
 }
 
