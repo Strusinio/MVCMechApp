@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddCarController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorkshopController.cs" />
     <Compile Include="DBModule\Car.cs">
@@ -166,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddEventModel.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\ChatModel.cs" />
     <Compile Include="Models\CustmerLoginModel.cs" />
@@ -176,10 +178,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animated-event-calendar\assets\demo.css" />
+    <Content Include="Content\animated-event-calendar\dist\jquery.simple-calendar.js" />
+    <Content Include="Content\animated-event-calendar\dist\jquery.simple-calendar.min.js" />
+    <Content Include="Content\animated-event-calendar\dist\simple-calendar.css" />
+    <Content Include="Content\animated-event-calendar\gulpfile.js" />
+    <Content Include="Content\animated-event-calendar\index.html" />
+    <Content Include="Content\animated-event-calendar\src\jquery.simple-calendar.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="DBModule\CustomerDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CustomerDBModel.edmx</DependentUpon>
@@ -203,6 +213,12 @@
     <Content Include="DBModule\CustomerDBModel.edmx.diagram">
       <DependentUpon>CustomerDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\animated-event-calendar\.gitignore" />
+    <Content Include="Content\animated-event-calendar\LICENCE" />
+    <Content Include="Content\animated-event-calendar\package-lock.json" />
+    <Content Include="Content\animated-event-calendar\package.json" />
+    <Content Include="Content\animated-event-calendar\README.md" />
+    <Content Include="Content\animated-event-calendar\src\simple-calendar.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -244,6 +260,7 @@
     <Content Include="Views\AddCar\YourCarDetails.cshtml" />
     <Content Include="Views\Workshop\AddService.cshtml" />
     <Content Include="Views\Workshop\YourServices.cshtml" />
+    <Content Include="Views\Events\AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,9 @@ namespace MechAppProject
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/Content/animated-event-calendar").Include(
+                        "~/Content/animated-event-calendar/dist/jquery.simple-calendar.min.js"));
+
             // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
             // gotowe do produkcji, użyj narzędzia do kompilowania ze strony https://modernizr.com, aby wybrać wyłącznie potrzebne testy.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -24,7 +27,9 @@ namespace MechAppProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/animated-event-calendar/dist/simple-calendar.css",
+                      "~/Content/jquery-ui.css"));
         }
     }
 }
