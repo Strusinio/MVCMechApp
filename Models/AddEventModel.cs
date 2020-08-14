@@ -20,13 +20,19 @@ namespace MechAppProject.Models
         public SelectListItem CustomerCar { get; set; }
         [DisplayName("Wybierz samochód")]
         public SelectList CustomerCarsSelectList { get; set; }
-        public List<CalendarEventModel> CalendarEvents { get; set; }
+        public List <CalendarEventJson> CalendarEventsJson { get; set; }
     }
 
-    public class CalendarEventModel
+    public class CalendarEventJson
     {
-        public string EvenTitle { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string summary { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+    }
+
+    public enum OrderStatus
+    {
+        OrderReceived = 1,
+        OrderPending,
     }
 }

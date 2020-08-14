@@ -19,6 +19,7 @@ namespace MechAppProject.DBModule
         {
             this.Chats = new HashSet<Chat>();
             this.Cars = new HashSet<Car>();
+            this.ServiceEvents = new HashSet<ServiceEvent>();
         }
     
         public int CustomerId { get; set; }
@@ -37,5 +38,7 @@ namespace MechAppProject.DBModule
         public virtual ICollection<Chat> Chats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceEvent> ServiceEvents { get; set; }
     }
 }

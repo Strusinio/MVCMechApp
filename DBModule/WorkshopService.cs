@@ -14,6 +14,12 @@ namespace MechAppProject.DBModule
     
     public partial class WorkshopService
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public WorkshopService()
+        {
+            this.ServiceEvents = new HashSet<ServiceEvent>();
+        }
+    
         public int ServiceId { get; set; }
         public int WorkshopId { get; set; }
         public string Title { get; set; }
@@ -24,5 +30,7 @@ namespace MechAppProject.DBModule
         public int PriceDecimal { get; set; }
     
         public virtual Workshop Workshop { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceEvent> ServiceEvents { get; set; }
     }
 }

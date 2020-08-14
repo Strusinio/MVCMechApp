@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\Helpers\EventsHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddCarController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
@@ -157,6 +158,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DBModule\ServiceEvent.cs">
+      <DependentUpon>CustomerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModule\Workshop.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>

@@ -1,4 +1,6 @@
-﻿using MechAppProject.Models;
+﻿using MechAppProject.Code.Helpers;
+using MechAppProject.DBModule;
+using MechAppProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +14,67 @@ namespace MechAppProject.Controllers
         // GET: Events
         public ActionResult AddEvent(int workshopId)
         {
-            var viewModel = new AddEventModel()
+            var session = Session["Login"] as SessionModel;
+            var viewModel = new AddEventModel();
+
+            if (session != null)
             {
-                CustomerCarsSelectList = new SelectList(new List<SelectListItem>() {
-                    new SelectListItem() { Text = "Audi A5", Value = "1" },
-                    new SelectListItem() { Text = "Audi A4", Value = "2" }
-                }, "Value", "Text"),
-                ServiceHourSelectList = new SelectList(new List<SelectListItem>() {
-                    new SelectListItem() { Text = "8:00", Value = "8:00" },
-                    new SelectListItem() { Text = "8:15", Value = "8:15" }
-                }, "Value", "Text"),
-                WorkshopServicesSelectList = new SelectList(new List<SelectListItem>() {
-                    new SelectListItem() { Text = "Wymiana kół", Value = "1" },
-                    new SelectListItem() { Text = "Wymiana parownika", Value = "2" }
-                }, "Value", "Text")
-            };
+                using (var db = new MechAppProjectEntities())
+                {
+                    var serviceEvents = db.ServiceEvents.Where(x => x.WorkshopService.WorkshopId == workshopId).ToList();
+
+                    viewModel.CalendarEventsJson = serviceEvents.Select(x => new CalendarEventJson() { startDate = x.StartDate, endDate = x.EndDate, summary = x.WorkshopService.Title }).ToList();
+
+                    var customerCars = db.Cars
+                        .Where(x => x.CustomerId == session.UserId)
+                        .Select(x => new SelectListItem() { Text = x.Model, Value = x.CarId.ToString() })
+                        .ToList();
+
+                    var workshopServices = db.WorkshopServices
+                        .Where(x => x.WorkshopId == workshopId)
+                        .Select(x => new SelectListItem() { Text = x.Title, Value = x.ServiceId.ToString() })
+                        .ToList();
+
+                    viewModel.CustomerCarsSelectList = new SelectList(customerCars, "Value", "Text");
+                    viewModel.WorkshopServicesSelectList = new SelectList(workshopServices, "Value", "Text");
+                    viewModel.ServiceHourSelectList = new SelectList(EventsHelper.GetHoursToSelect(6, 21, 15), "Value", "Text");
+                }
+            }
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddEvent(AddEventModel viewModel)
+        {
+            var session = Session["Login"] as SessionModel;
+
+            if (session != null)
+            {
+                using (var db = new MechAppProjectEntities())
+                {
+                    var serviceId = Convert.ToInt32(viewModel.WorkshopService.Value);
+                    var service = db.WorkshopServices.First(x => x.ServiceId == serviceId);
+                    var serviceStartTime = viewModel.ServiceHours.Value.Split(':');
+
+                    var startDate = viewModel.ServiceDate + new TimeSpan(Convert.ToInt32(serviceStartTime[0]), Convert.ToInt32(serviceStartTime[1]), 0);
+                    var endDate = startDate + new TimeSpan(service.DurationInHrs, service.DurationInMinutes, 0);
+
+                    var serviceEventModel = new ServiceEvent()
+                    {
+                        CustomerId = session.UserId,
+                        ServiceId = service.ServiceId,
+                        OrderStatus = (int)OrderStatus.OrderReceived,
+                        StartDate = startDate,
+                        EndDate = endDate
+                    };
+
+                    db.ServiceEvents.Add(serviceEventModel);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
